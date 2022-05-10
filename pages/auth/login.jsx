@@ -1,22 +1,22 @@
 import React from 'react'
 import Button from '../../components/auth/Button'
 import InputForm from '../../components/auth/InputForm'
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../config/firebase';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../features/auth'
 
 export default function login() {
 
-    const login = (event) => {
+    const dispatch = useDispatch()
+
+    const login = async (event) => {
         event.preventDefault()
         const { email: { value: email }, password: { value: password } } = event.target
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user
-                console.log(user);
-            }).catch((error) => {
-                const errorMessage = error.message;
-                console.log(errorMessage);
-            });
+
+        if (email || password) {
+            dispatch(logIn({ email, password }))
+        } else {
+            console.log('Rellena los campos');
+        }
     }
     return (
         <div className=' w-4/6 h-[500px] mx-auto mt-12 bg-slate-100 shadow-xl flex'>
