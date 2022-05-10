@@ -6,8 +6,6 @@ export default function Navbar() {
 
   const { logged, name } = useSelector(state => state.auth)
 
-  console.log(name);
-
   return (
     <nav className=' px-14 py-7 flex'>
       <h2><Link href={'/'}>Home</Link></h2>
