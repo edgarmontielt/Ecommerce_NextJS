@@ -52,7 +52,7 @@ const authSlice = createSlice({
             state.logged = true
             state.name = action.payload.email
             // state.profilePic = ''
-            state.id = action.payload.providerData.uid
+            state.id = action.payload.uid
             state.loading = false
         })
     }
