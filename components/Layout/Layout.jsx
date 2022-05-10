@@ -1,10 +1,9 @@
 import React from 'react'
-import Navbar from '../Header/Navbar/Navbar'
-import { Head } from 'next/head'
+import Navbar from '../Navbar/Navbar'
 
 export default function Layout({ children }) {
      return (
-          <>   
+          <>
                <Navbar />
                <main>{children}</main>
           </>
