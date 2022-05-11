@@ -17,7 +17,7 @@ export default function Layout({ children }) {
      return (
           <>
                <Navbar />
-               <main>{children}</main>
+               <main className=' mx-4 md:mx-14'>{children}</main>
           </>
      )
 }
