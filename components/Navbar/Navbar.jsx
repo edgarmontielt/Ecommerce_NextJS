@@ -7,14 +7,14 @@ export default function Navbar() {
   const { logged, name } = useSelector(state => state.auth)
 
   return (
-    <nav className=' px-14 py-7 flex'>
+    <nav className=' px-4 md:px-14 py-7 flex'>
       <h2><Link href={'/'}>Home</Link></h2>
       {logged ?
-        <ul className=' text-sm flex ml-auto gap-8'>
+        <ul className=' text-sm flex ml-auto gap-8 items-center'>
           <li>{name}</li>
         </ul>
         :
-        <ul className=' text-sm flex ml-auto gap-8'>
+        <ul className=' text-sm flex ml-auto gap-8 items-center'>
           <li className='hover:underline'><Link href={"/auth/signup"}>Sign Up</Link></li>
           <li className='hover:underline'><Link href={"/auth/login"}>Log In</Link></li>
         </ul>
