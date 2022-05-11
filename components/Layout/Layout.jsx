@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../navbar/Navbar'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../config/firebase'
 import { logIn } from '../../features/auth'
