@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '../../components/auth/Button'
 import InputForm from '../../components/auth/InputForm'
 import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from '../../features/auth'
 import { ImSpinner2 } from 'react-icons/im'
+import { useRouter } from 'next/router';
 
-export default function login() {
+export default function Login() {
 
-    const { loading } = useSelector(state => state.auth)
+    const { loading,logged } = useSelector(state => state.auth)
     const dispatch = useDispatch()
+    const router = useRouter()
 
     const login = async (event) => {
         event.preventDefault()
@@ -20,6 +22,13 @@ export default function login() {
             console.log('Rellena los campos');
         }
     }
+
+    useEffect(() => {
+        if (logged) {
+            router.replace('/')
+        }
+    }, [logged])
+
     return (
         <div className=' w-[90%] md:w-4/6 h-[500px] mx-auto mt-5 bg-slate-100 shadow-xl flex flex-wrap lg:flex-nowrap'>
             <section className=' w-[130%] background'></section>

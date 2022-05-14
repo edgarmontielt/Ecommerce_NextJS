@@ -1,7 +1,6 @@
 import React from "react"
-import Button from "../components/auth/Button"
 
-export default function Home({ children }) {
+export default function Home() {
     return (
         <div className=' h-screen flex flex-wrap items-center'>
             <img src='https://cdn.pixabay.com/photo/2015/10/01/17/17/car-967387_960_720.png' className=' z-10 absolute top-[25%] left-[32rem] w-7/12' />

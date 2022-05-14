@@ -1,16 +1,24 @@
 import React, { useEffect } from 'react'
 import Navbar from '../navbar/Navbar'
+import { logIn, logOut, validate } from '../../features/auth'
+import { useDispatch, useSelector } from 'react-redux'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../config/firebase'
-import { logIn } from '../../features/auth'
-import { useDispatch } from 'react-redux'
 
 export default function Layout({ children }) {
      const dispatch = useDispatch()
+     const { loading, logged } = useSelector(state => state.auth)
 
      useEffect(() => {
           onAuthStateChanged(auth, (result) => {
-               console.log(result)
+               if (result) {
+                    dispatch(validate({
+                         email: result.email,
+                         displayName: result.displayName
+                    }))
+               } else {
+                    dispatch(logOut())
+               }
           })
      }, [])
 

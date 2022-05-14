@@ -1,5 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    updateProfile
+} from "firebase/auth";
 import { auth } from '../../config/firebase';
 
 export const logIn = createAsyncThunk(
@@ -17,34 +22,39 @@ export const logIn = createAsyncThunk(
 export const signUp = createAsyncThunk(
     'auth/signup',
     async (data, thunkAPI) => {
-        try {
-            const result = await createUserWithEmailAndPassword(auth, data.email, data.password)
-            console.log(result);
-            return result.user
-        } catch (error) {
-            console.log(error);
-
-        }
+        createUserWithEmailAndPassword(auth, data.email, data.password)
+            .then(result => {
+                updateProfile(result.user, {
+                    displayName: data.displayName,
+                    photoURL: data.photoURL
+                })
+            }).catch(error => console.log(error))
+        return data
     }
 )
 
+const initialState = {
+    logged: false,
+    name: '',
+    profilePic: '',
+    id: '',
+    loading: false,
+}
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        logged: false,
-        name: '',
-        profilePic: '',
-        id: '',
-        loading: false,
-    },
+    initialState,
     reducers: {
-        // login(state, action) {
-        //     state.logged = true,
-        //         state.name = action.payload.name,
-        //         state.profilePic = action.payload.profilePic,
-        //         state.id = ''
-        // }
+        validate(state, action) {
+            state.logged = true
+            state.name = action.payload?.displayName
+            state.profilePic = action.payload?.photoURL
+        },
+        logOut(state, action) {
+            state.logged = false
+            state.name = ''
+            state.profilePic = ''
+        }
     },
     extraReducers: (builder) => {
 
@@ -61,7 +71,7 @@ const authSlice = createSlice({
 
         builder.addCase(logIn.fulfilled, (state, action) => {
             state.logged = true
-            state.name = action.payload.email
+            state.name = action.payload.displayName
             state.id = action.payload.uid
             state.loading = false
         })
@@ -79,11 +89,12 @@ const authSlice = createSlice({
 
         builder.addCase(signUp.fulfilled, (state, action) => {
             state.logged = true
-            state.name = action.payload.email
+            state.name = action.payload.displayName
             state.id = action.payload.uid
             state.loading = false
         })
     }
 })
 
+export const { validate, logOut } = authSlice.actions
 export default authSlice.reducer
