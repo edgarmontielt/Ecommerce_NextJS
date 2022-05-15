@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    onAuthStateChanged,
     updateProfile
 } from "firebase/auth";
 import { auth } from '../../config/firebase';
@@ -47,8 +46,8 @@ const authSlice = createSlice({
     reducers: {
         validate(state, action) {
             state.logged = true
-            state.name = action.payload?.displayName
-            state.profilePic = action.payload?.photoURL
+            state.name = action.payload.displayName
+            state.profilePic = action.payload.photoURL
         },
         logOut(state, action) {
             state.logged = false
@@ -85,6 +84,7 @@ const authSlice = createSlice({
             state.name = ''
             state.id = ''
             state.loading = false
+            state.profilePic = ''
         })
 
         builder.addCase(signUp.fulfilled, (state, action) => {
@@ -92,6 +92,7 @@ const authSlice = createSlice({
             state.name = action.payload.displayName
             state.id = action.payload.uid
             state.loading = false
+            state.profilePic = action.payload.photoURL
         })
     }
 })

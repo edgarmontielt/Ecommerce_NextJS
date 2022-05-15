@@ -3,6 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { ImUser } from 'react-icons/im';
+import { FiLogOut } from 'react-icons/fi'
 import Route from './Route'
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase'
@@ -22,11 +23,11 @@ export default function Navbar() {
             <Menu />
             <ul className=' text-sm flex ml-auto gap-8 items-center'>
                 <li><AiOutlineSearch className='w-5 h-5' /></li>
-                <Cart />
+                <li> <Cart /></li>
                 {logged ?
                     <>
                         <li><ImUser className='mb-[2px] w-5 h-5' /></li>
-                        <li className=' cursor-pointer' onClick={logout}>Logout</li>
+                        <li className=' cursor-pointer' onClick={logout}><FiLogOut className='w-4 h-4' /></li>
                     </> :
                     <>
                         <Route to={'/auth/signup'} title={'Sign Up'} />
