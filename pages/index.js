@@ -1,10 +1,32 @@
+import { collection, getDocs } from "firebase/firestore"
 import React from "react"
-import Header from "../components/header/Header"
+import Banner from "../components/home/banner/Banner"
+import Header from "../components/home/header/Header"
+import TopProducts from "../components/home/products/TopProducts"
+import { database } from "../config/firebase"
 
-export default function Home() {
+export async function getStaticProps() {
+    const col = collection(database, 'products')
+    const docs = await getDocs(col)
+
+    const products = []
+    docs.forEach(doc => {
+        products.push({ ...doc.data(), id: doc.id })
+    })
+    return {
+        props: {
+            products
+        },
+        revalidate: 5
+    }
+}
+
+export default function Home({ products }) {
     return (
-        <div className=' h-screen flex flex-wrap items-center'>
+        <div className=''>
             <Header />
+            <Banner />
+            <TopProducts products={products}/>
         </div>
     )
 }
