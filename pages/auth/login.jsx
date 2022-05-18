@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../../components/auth/Button'
 import InputForm from '../../components/auth/InputForm'
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,18 +8,23 @@ import { useRouter } from 'next/router';
 
 export default function Login() {
 
-    const { loading,logged } = useSelector(state => state.auth)
+    const { loading, logged } = useSelector(state => state.auth)
     const dispatch = useDispatch()
     const router = useRouter()
+
+    const [viewAlert, setViewAlert] = useState(false)
 
     const login = async (event) => {
         event.preventDefault()
         const { email: { value: email }, password: { value: password } } = event.target
 
-        if (email || password) {
+        if (email && password) {
             dispatch(logIn({ email, password }))
         } else {
-            console.log('Rellena los campos');
+            setViewAlert(true)
+            setTimeout(() => {
+                setViewAlert(false)
+            }, 2000)
         }
     }
 
@@ -45,6 +50,7 @@ export default function Login() {
                     name={'password'}
                     placeholder={'Password'}
                 />
+                {viewAlert && <p className=' text-center mt-4 text-red-400 text-sm px-2 font-medium'>Escribe tus credenciales</p>}
                 <Button title={'SIGN IN'} />
             </form>
         </div>

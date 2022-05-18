@@ -2,7 +2,7 @@ import React from "react";
 
 export default function InputForm({ type, name, placeholder }) {
     return (
-        <div className=" border-b-[1px] border-slate-400 mb-10">
+        <div className=" border-b-[1px] border-slate-400 mt-10">
             <input
                 type={type}
                 name={name}
