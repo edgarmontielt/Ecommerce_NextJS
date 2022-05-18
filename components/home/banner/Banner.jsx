@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Banner() {
     return (
-        <section className=" bg-[black] h-[700px] text-white w-full py-20 my-10 flex flex-wrap">
+        <section className=" bg-[black] h-[700px] text-white w-full md:py-20 my-10 flex flex-wrap">
             <div className="w-1/3 pl-14 text-2xl mt-20">
                 Find the best option for productivity or entertainment.
             </div>

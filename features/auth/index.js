@@ -73,6 +73,7 @@ const authSlice = createSlice({
             state.name = action.payload.displayName
             state.id = action.payload.uid
             state.loading = false
+            localStorage.setItem('id', state.id)
         })
 
         builder.addCase(signUp.pending, (state, action) => {
@@ -93,6 +94,7 @@ const authSlice = createSlice({
             state.id = action.payload.uid
             state.loading = false
             state.profilePic = action.payload.photoURL
+            localStorage.setItem('id', state.id)
         })
     }
 })
