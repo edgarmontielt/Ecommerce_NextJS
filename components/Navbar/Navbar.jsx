@@ -27,8 +27,8 @@ export default function Navbar() {
             <Modal openMenu={openMenu} logout={logout} logged={logged} />
             <Menu />
             <ul className={`-mt-96 md:mt-0 ml-auto md:static text-sm flex flex-col p-10 md:p-0 gap-2 items-end md:gap-8 md:flex-row md:items-center`}>
-                <li className='absolute invisible top-8' ><AiOutlineSearch className='w-5 h-5' /></li>
-                <li className=' absolute invisible top-8 '> <Cart /></li>
+                <li className='absolute invisible md:visible top-8 md:static' ><AiOutlineSearch className='w-5 h-5' /></li>
+                <li className=' absolute invisible top-8 md:visible md:static'> <Cart /></li>
                 {logged ?
                     <>
                         <li><ImUser className='mb-[2px] w-5 h-5' /></li>
