@@ -1,6 +1,7 @@
 import React from 'react'
 import { database } from '../../config/firebase'
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
+import axios from 'axios'
 
 export async function getStaticPaths() {
     const col = collection(database, 'products')
@@ -31,6 +32,11 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Producto({ product: { product, id } }) {
+    const payment = () => {
+        axios.get('/api/payment/stripe/stripe-checkout')
+            .then(({ data }) => location.href = data.url)
+            .catch(err => console.log(err))
+    }
     return (
         <div className=' md:flex-row flex flex-col gap-10 md:mx-14'>
             <img src={product.imgURL} className=' md:w-1/2 ' />
@@ -44,11 +50,13 @@ export default function Producto({ product: { product, id } }) {
                 <div className='flex gap-6'>
                     <button
                         className=' bg-blue-600 w-full py-2 rounded-full text-white font-medium hover:bg-blue-700'
+                        onClick={payment}
                     >
                         SHOP
                     </button>
                     <button
                         className=' border-[1px] border-blue-600 text-blue-900 w-1/3 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white'
+
                     >
                         CART
                     </button>

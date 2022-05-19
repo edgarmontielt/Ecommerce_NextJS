@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { database } from '../../config/firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
@@ -30,8 +29,8 @@ export const recoverCart = createAsyncThunk(
 )
 
 const initialState = {
-    items: [],
-    loading: false
+     items: [],
+     loading: false
 }
 
 const cartSlice = createSlice({
@@ -69,21 +68,21 @@ const cartSlice = createSlice({
           builder.addCase(addToCart.pending, (state, action) => {
                state.loading = true
           })
-          .addCase(addToCart.fulfilled, (state, action) => {
-               state.loading = false
-               state.items = [...state.items, action.payload]
-          })
+               .addCase(addToCart.fulfilled, (state, action) => {
+                    state.loading = false
+                    state.items = [...state.items, action.payload]
+               })
 
           builder.addCase(recoverCart.pending, (state, action) => {
                state.loading = true
           })
-          .addCase(recoverCart.rejected, (state, action) => {
-               state.loading = false
-          })
-          .addCase(recoverCart.fulfilled, (state, action) => {
-               state.loading = false
-               state.items = action.payload
-          })
+               .addCase(recoverCart.rejected, (state, action) => {
+                    state.loading = false
+               })
+               .addCase(recoverCart.fulfilled, (state, action) => {
+                    state.loading = false
+                    state.items = action.payload
+               })
      }
 })
 

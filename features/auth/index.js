@@ -61,41 +61,41 @@ const authSlice = createSlice({
             state.loading = true
         })
 
-        builder.addCase(logIn.rejected, (state, action) => {
-            state.logged = false
-            state.name = ''
-            state.id = ''
-            state.loading = false
-        })
+            .addCase(logIn.rejected, (state, action) => {
+                state.logged = false
+                state.name = ''
+                state.id = ''
+                state.loading = false
+            })
 
-        builder.addCase(logIn.fulfilled, (state, action) => {
-            state.logged = true
-            state.name = action.payload.displayName
-            state.id = action.payload.uid
-            state.loading = false
-            localStorage.setItem('id', state.id)
-        })
+            .addCase(logIn.fulfilled, (state, action) => {
+                state.logged = true
+                state.name = action.payload.displayName
+                state.id = action.payload.uid
+                state.loading = false
+                localStorage.setItem('id', state.id)
+            })
 
         builder.addCase(signUp.pending, (state, action) => {
             state.loading = true
         })
 
-        builder.addCase(signUp.rejected, (state, action) => {
-            state.logged = false
-            state.name = ''
-            state.id = ''
-            state.loading = false
-            state.profilePic = ''
-        })
+            .addCase(signUp.rejected, (state, action) => {
+                state.logged = false
+                state.name = ''
+                state.id = ''
+                state.loading = false
+                state.profilePic = ''
+            })
 
-        builder.addCase(signUp.fulfilled, (state, action) => {
-            state.logged = true
-            state.name = action.payload.displayName
-            state.id = action.payload.uid
-            state.loading = false
-            state.profilePic = action.payload.photoURL
-            localStorage.setItem('id', state.id)
-        })
+            .addCase(signUp.fulfilled, (state, action) => {
+                state.logged = true
+                state.name = action.payload.displayName
+                state.id = action.payload.uid
+                state.loading = false
+                state.profilePic = action.payload.photoURL
+                localStorage.setItem('id', state.id)
+            })
     }
 })
 
