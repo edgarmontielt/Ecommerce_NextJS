@@ -23,7 +23,7 @@ export default function Navbar() {
     return (
         <nav className='px-4 md:px-14 flex py-7 md:grid md:grid-cols-3'>
             <h2 className=' font-semibold text-lg'><Link href={'/'}>Logo</Link></h2>
-            <FiMenu className='absolute mt-0 top-9 right-8 md:-mt-96 active:opacity-80' onClick={() => { setOpenMenu(!openMenu) }} />
+            <FiMenu className='absolute mt-0 top-8 right-8 md:-mt-96 active:opacity-80 w-6 h-6' onClick={() => { setOpenMenu(!openMenu) }} />
             <Modal openMenu={openMenu} logout={logout} logged={logged} />
             <Menu />
             <ul className={`-mt-96 md:mt-0 ml-auto md:static text-sm flex flex-col p-10 md:p-0 gap-2 items-end md:gap-8 md:flex-row md:items-center`}>

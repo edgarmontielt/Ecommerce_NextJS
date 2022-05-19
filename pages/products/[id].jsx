@@ -39,14 +39,12 @@ export default function Producto({ product: { product, id } }) {
     }
     return (
         <div className=' md:flex-row flex flex-col gap-10 md:mx-14'>
-            <img src={product.imgURL} className=' md:w-1/2 ' />
-            <section className=' md:mt-[5rem] md:text-left text-center md:w-1/2 mx-14 md:mx-0 md:mr-10'>
+            <img src={product.images} className=' md:w-1/2 ' />
+            <section className=' md:mt-[6rem] md:text-left text-center md:w-1/2 mx-14 md:mx-0 md:mr-10'>
                 <h1 className=' text-3xl font-medium mb-10'>{product.name}</h1>
-                <h4 className='font-medium mb-2'>Descriptions:</h4>
-                <ul className=' list-disc mb-16'>
-                    {product.description.map(item => <li key={item.length}>{item}</li>)}
-                </ul>
-                <p className=' text-3xl mb-16'>${product.price}</p>
+                <h4 className='font-medium mb-2'>Description:</h4>
+                <p className='mb-12'>{product.description}</p>
+                <p className=' text-3xl mb-16'>${product.default_price_data.unit_amount}</p>
                 <div className='flex gap-6'>
                     <button
                         className=' bg-blue-600 w-full py-2 rounded-full text-white font-medium hover:bg-blue-700'

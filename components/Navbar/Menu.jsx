@@ -7,6 +7,7 @@ export default function Menu() {
             <Route to={'/'} title={'Home'} />
             <Route to={'/products'} title={'Products'} />
             <Route to={'/blog'} title={'Blog'} />
+            <Route to={'/products/create'} title={'Create'} />
         </ul>
     )
 }
