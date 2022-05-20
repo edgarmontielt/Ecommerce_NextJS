@@ -1,10 +1,9 @@
 import { collection, getDocs } from "firebase/firestore"
-import React from "react"
+import { database } from "../config/firebase"
 import Footer from "../components/footer/Footer"
 import Banner from "../components/home/banner/Banner"
 import Header from "../components/home/header/Header"
 import TopProducts from "../components/home/products/TopProducts"
-import { database } from "../config/firebase"
 
 export async function getStaticProps() {
     const col = collection(database, 'products')

@@ -8,7 +8,7 @@ export default async function getProducts(req, res) {
      const data = []
 
      docs.forEach(doc => {
-          data.push(doc.data())
+          data.push({...doc.data(), id: doc.id})
      });
      return res.json(data)
 }

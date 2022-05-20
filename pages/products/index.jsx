@@ -28,14 +28,16 @@ export default function Products({ products }) {
     const [asideOpen, setAsideOpen] = useState(false)
 
     return (
-        <section className='md:my-10 lg:mx-10 flex flex-col'>
-            <h1 className='text-center text-2xl mb-16'>All products</h1>
-            <div className='grid xl:grid-cols-4 grid-cols-1 mx-auto sm:grid-cols-2 gap-5 md:justify-between '>
-                {products.map(product => {
-                    return <CardProduct key={product.id} product={product} />
-                })}
-            </div>
+        <>
+            <section className='md:my-10 lg:mx-10 flex flex-col'>
+                <h1 className='text-center text-2xl mb-16'>All products</h1>
+                <div className='grid xl:grid-cols-4 grid-cols-1 mx-auto sm:grid-cols-2 gap-5 md:justify-between '>
+                    {products.map(product => {
+                        return <CardProduct key={product.id} product={product} />
+                    })}
+                </div>
+            </section>
             <Footer />
-        </section>
+        </>
     )
 }
