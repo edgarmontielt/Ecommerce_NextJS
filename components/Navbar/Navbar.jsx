@@ -25,7 +25,6 @@ export default function Navbar() {
         setOpenMenu(false)
     }
 
-
     const getProducts = () => {
         axios.get('/api/products')
             .then(data => setProducts(data.data))
@@ -80,9 +79,8 @@ export default function Navbar() {
                 />
             </div>
 
-            <div className=' flex flex-col absolute right-64 top-20 gap-6 bg-white py-5'>
+            <div className=' img flex flex-col absolute right-64 top-20 gap-6 bg-white py-5'>
                 {results.map(item => {
-                    console.log(item);
                     return (
                         <Link href={'/products/' + item.id}>
                             <div className=' flex items-center cursor-pointer hover:bg-gray-400'>

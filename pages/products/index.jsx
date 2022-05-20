@@ -2,9 +2,6 @@ import React, { useRef, useState } from 'react'
 import { collection, getDocs } from "firebase/firestore"
 import { database } from '../../config/firebase'
 import CardProduct from '../../components/products/CardProduct'
-import Aside from '../../components/products/aside/Aside';
-import Chevron from '../../components/products/aside/Chevron';
-import Footer from '../../components/footer/Footer';
 
 
 export async function getStaticProps() {
@@ -37,7 +34,6 @@ export default function Products({ products }) {
                     })}
                 </div>
             </section>
-            <Footer />
         </>
     )
 }

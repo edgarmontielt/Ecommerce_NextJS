@@ -4,8 +4,8 @@ import { logOut, validate } from '../../features/auth'
 import { useDispatch } from 'react-redux'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../config/firebase'
-import Aside from '../products/aside/Aside'
-import Chevron from '../products/aside/Chevron'
+import Aside from '../aside/Aside'
+import Chevron from '../aside/Chevron'
 
 export default function Layout({ children }) {
      const dispatch = useDispatch()

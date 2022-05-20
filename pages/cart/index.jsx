@@ -25,10 +25,10 @@ export default function Cart() {
             <table className=' table-auto mx-auto w-[90%] mt-40'>
                 <thead className=' pb-10'>
                     <tr>
-                        <th className=' hidden md:visible font-medium text-lg'>Name</th>
+                        <th className=' font-medium text-lg'>Name</th>
                         <th className=' font-medium text-lg'>Image</th>
                         <th className=' font-medium text-lg'>Amount</th>
-                        <th className=' hidden md:visible font-medium text-lg'>Actions</th>
+                        <th className=' font-medium text-lg'>Actions</th>
                         <th className=' font-medium text-lg'>Price</th>
                     </tr>
                 </thead>
@@ -36,7 +36,7 @@ export default function Cart() {
                     {!data.loading ? data.items.map(item => {
                         return (
                             <tr key={item.product.id}>
-                                <td className=' text-lg text-center  hidden md:visible '>{item.product.name}</td>
+                                <td className=' text-lg text-center '>{item.product.name}</td>
                                 <td className=' flex justify-center'><img src={item.product.images} className=' w-16' /></td>
                                 <td >
                                     <div className=' mx-auto border-2 rounded-md w-40 text-center flex gap-4 justify-center py-1'>
@@ -55,7 +55,7 @@ export default function Cart() {
                                         </span>
                                     </div>
                                 </td>
-                                <td className=' text-center hidden md:visible'>
+                                <td className=' text-center'>
                                     <button
                                         onClick={() => removeProduct(item.product.id)}
                                         className=' bg-black text-white p-2 rounded-lg'>
