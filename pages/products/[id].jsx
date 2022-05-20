@@ -2,6 +2,10 @@ import React from 'react'
 import { database } from '../../config/firebase'
 import { collection, doc, getDoc, getDocs } from 'firebase/firestore'
 import axios from 'axios'
+import ButtonShop from '../../components/products/ButtonShop'
+import ButtonGnrl from '../../components/products/ButtonGnrl'
+import { BsCartFill } from 'react-icons/bs'
+import { AiFillHeart } from 'react-icons/ai';
 
 export async function getStaticPaths() {
     const col = collection(database, 'products')
@@ -32,11 +36,13 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Producto({ product: { product, id } }) {
+
     const payment = () => {
         axios.get('/api/payment/stripe/stripe-checkout')
             .then(({ data }) => location.href = data.url)
             .catch(err => console.log(err))
     }
+
     return (
         <div className=' md:flex-row flex flex-col gap-10 md:mx-14'>
             <img src={product.images} className=' md:w-1/2 ' />
@@ -45,19 +51,10 @@ export default function Producto({ product: { product, id } }) {
                 <h4 className='font-medium mb-2'>Description:</h4>
                 <p className='mb-12'>{product.description}</p>
                 <p className=' text-3xl mb-16'>${product.default_price_data.unit_amount}</p>
-                <div className='flex gap-6'>
-                    <button
-                        className=' bg-blue-600 w-full py-2 rounded-full text-white font-medium hover:bg-blue-700'
-                        onClick={payment}
-                    >
-                        SHOP
-                    </button>
-                    <button
-                        className=' border-[1px] border-blue-600 text-blue-900 w-1/3 py-2 rounded-full font-medium hover:bg-blue-600 hover:text-white'
-
-                    >
-                        CART
-                    </button>
+                <ButtonShop payment={payment} />
+                <div className=' mt-10 flex gap-8'>
+                    <ButtonGnrl title={'CART'} icon={<BsCartFill className='w-5 h-5' />} />
+                    <ButtonGnrl title={'ADD TO FAVORITES'} icon={<AiFillHeart className='w-5 h-5' />} />
                 </div>
             </section>
         </div>

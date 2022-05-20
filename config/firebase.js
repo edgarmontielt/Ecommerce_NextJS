@@ -1,6 +1,8 @@
-import { initializeApp } from 'firebase/app'
+import { initializeApp, getApps, getApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
+
+let app
 
 const firebaseConfig = {
      apiKey: process.env.NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY,
@@ -12,7 +14,12 @@ const firebaseConfig = {
      measurementId: process.env.MEASUREMENT_ID,
 }
 
-const app = initializeApp(firebaseConfig)
+if (!getApps.length) {
+     app = initializeApp(firebaseConfig)
+} else {
+     app = getApp()
+}
+
 
 export const database = getFirestore(app)
 export const auth = getAuth(app)

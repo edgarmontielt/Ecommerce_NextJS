@@ -1,13 +1,21 @@
+import { doc, getDoc } from 'firebase/firestore';
+import { database } from '../../../../config/firebase';
+
 const stripe = require('stripe')(process.env.STRIPE_SK)
 
 export default async function createCheckoutSession(req, res) {
     const host = req.headers.host
+    const id = req.headers.referer.split('/')[4]
+    const document = doc(database, "products", id)
+    const productDoc = await getDoc(document)
+    const product = productDoc.data()
+
     try {
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
-                    price: 'price_1L0GoRI7XrZmL34QxykT3TFn',
-                    quantity: 2
+                    price: product.priceID,
+                    quantity: 1
                 }
             ],
             mode: 'payment',

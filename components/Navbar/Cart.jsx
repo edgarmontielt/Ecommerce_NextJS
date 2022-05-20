@@ -6,10 +6,10 @@ export default function Cart() {
     return (
         <>
             <Link href={"/cart"}>
-                <a><AiFillShopping className='mb-[2px] w-5 h-5' /></a>
+                <a><AiFillShopping className='mb-[3px] w-6 h-6' /></a>
             </Link>
-            <p className=' absolute top-7 ml-3 bg-red-500 w-3 h-3 p-0 flex items-center justify-center text-white text-center rounded-full text-[8px]'>
-                1
+            <p className=' absolute top-0 md:top-7 ml-3 bg-red-500 w-3 h-3 p-0 flex items-center justify-center text-white text-center rounded-full text-[8px]'>
+                0
             </p>
         </>
     )
