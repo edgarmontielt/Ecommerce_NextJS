@@ -1,4 +1,3 @@
-import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { database } from '../../config/firebase';
 import { collection, addDoc, getDocs } from 'firebase/firestore';
@@ -35,10 +34,7 @@ const initialState = {
 
 const cartSlice = createSlice({
      name: 'cart',
-     initialState: {
-          items: [],
-          loading: false
-     },
+     initialState,
      reducers: {
           // addToCart(state, action) {
           //      const newProduct = action.payload
