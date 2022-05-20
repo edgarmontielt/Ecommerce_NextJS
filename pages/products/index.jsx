@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { collection, getDocs } from "firebase/firestore"
 import { database } from '../../config/firebase'
-import Link from 'next/link'
+import CardProduct from '../../components/products/CardProduct'
+import Aside from '../../components/products/aside/Aside';
+import Chevron from '../../components/products/aside/Chevron';
 
 
 export async function getStaticProps() {
@@ -21,16 +23,15 @@ export async function getStaticProps() {
 }
 
 export default function Products({ products }) {
-    return (
-        <section className='md:my-10 md:mx-14'>
-            <h1 className='text-center text-2xl mb-16'>All products</h1>
 
-            <div className=' flex flex-wrap gap-10 md:gap-8 '>
+    const [asideOpen, setAsideOpen] = useState(false)
+
+    return (
+        <section className='md:my-10 lg:mx-10 flex flex-col'>
+            <h1 className='text-center text-2xl mb-16'>All products</h1>
+            <div className='grid xl:grid-cols-4 grid-cols-1 mx-auto sm:grid-cols-2 gap-5 md:justify-between '>
                 {products.map(product => {
-                    return <article key={product.id} className='md:w-1/5 w-[80%] mx-auto md:mx-0 flex flex-col items-center'>
-                        <h1 className='text-center hover:underline'><Link href={'/products/' + product.id}>{product.name}</Link></h1>
-                        <img src={product.images} className=' w-[200px]' />
-                    </article>
+                    return <CardProduct key={product.id} product={product} />
                 })}
             </div>
         </section>

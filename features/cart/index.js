@@ -13,9 +13,6 @@ export const addToCart = createAsyncThunk(
 
 export const recoverCart = createAsyncThunk(
      'cart/recoverCart', async (data, thunkAPI) => {
-
-          const state = thunkAPI.getState() //Obtiene el estado global
-
           const col = collection(database, 'cart', localStorage.getItem('id'), 'items')
           const snapshot = await getDocs(col)
 
@@ -36,10 +33,6 @@ const cartSlice = createSlice({
      name: 'cart',
      initialState,
      reducers: {
-          // addToCart(state, action) {
-          //      const newProduct = action.payload
-          //      state.items = [...state.items, newProduct]
-          // },
           removeToCart(state, action) {
                const id = action.payload
                state.items = state.items.filter(item => item.product.id !== id)
@@ -82,5 +75,5 @@ const cartSlice = createSlice({
      }
 })
 
-export const { /* addToCart, */  removeToCart, addItem, removeItem } = cartSlice.actions
+export const { removeToCart, addItem, removeItem } = cartSlice.actions
 export default cartSlice.reducer

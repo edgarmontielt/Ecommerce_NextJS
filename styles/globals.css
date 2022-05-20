@@ -25,3 +25,30 @@ a {
   background-size: cover;
   background-position: center;
 }
+
+.open {
+  animation: asideOpen 1.5s ease;
+  display: block;
+}
+
+.close {
+  animation: asideClose 1.5s ease;
+}
+
+@keyframes asideOpen {
+    to {
+      transform: translate(0%);
+    }
+    from{
+      transform: translate(-100%);
+    }
+}
+
+@keyframes asideClose {
+  to {
+    transform: translate(-100%);
+  }
+  from{
+    transform: translate(0%);
+  }
+}

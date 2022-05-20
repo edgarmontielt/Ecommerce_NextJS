@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../navbar/Navbar'
 import { logOut, validate } from '../../features/auth'
 import { useDispatch } from 'react-redux'
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../config/firebase'
+import Aside from '../products/aside/Aside'
+import Chevron from '../products/aside/Chevron'
 
 export default function Layout({ children }) {
      const dispatch = useDispatch()
+
+     const [asideOpen, setAsideOpen] = useState(false)
 
      useEffect(() => {
           onAuthStateChanged(auth, (result) => {
@@ -26,6 +30,8 @@ export default function Layout({ children }) {
           <>
                <Navbar />
                <main>{children}</main>
+               <Chevron onClick={setAsideOpen} />
+               <Aside asideOpen={asideOpen} onClick={setAsideOpen} />
           </>
      )
 }

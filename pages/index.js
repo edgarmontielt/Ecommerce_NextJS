@@ -33,10 +33,11 @@ export default function Home({ products }) {
             />
             <TopProducts products={products} />
             <Banner
-                src={'https://shop-cdncname.huawei.com/mx/uomcdn/MXHW/pms/202112/gbom/6941487241521/800_800_2F8D021FFF9D33FABB20825C251F3D12mp.png'}
-                title={'Matebook Pro'}
+                src={'https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/homepage/new-homepage/shelf-banner/wearables/watch-gt3-pc.png'}
+                title={'HUAWEI WATCH GT 3'}
                 description={'Find the best option for productivity or entertainment.'}
             />
+            <TopProducts products={products} />
             <Footer />
         </div>
     )

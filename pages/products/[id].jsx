@@ -58,7 +58,7 @@ export default function Producto({ product: { product, id } }) {
                 <h1 className=' text-3xl font-medium mb-10'>{product.name}</h1>
                 <h4 className='font-medium mb-2'>Description:</h4>
                 <p className='mb-12'>{product.description}</p>
-                <p className=' text-3xl mb-16'>${product.default_price_data.unit_amount}</p>
+                <p className=' text-3xl mb-16'>${product.default_price_data.unit_amount}{' '+ product.default_price_data.currency}</p>
                 <ButtonShop payment={payment} />
                 <div className=' my-8 flex gap-8'>
                     <button
