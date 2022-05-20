@@ -14,5 +14,3 @@ export default function Item({ openMenu }) {
         </>
     )
 }
-
-{/* <AiOutlineSearch className='w-6 h-6' /> */ }
