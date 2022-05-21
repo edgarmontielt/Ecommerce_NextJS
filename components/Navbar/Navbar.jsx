@@ -82,7 +82,7 @@ export default function Navbar() {
             <div className=' img flex flex-col absolute right-64 top-20 gap-6 bg-white py-5'>
                 {results.map(item => {
                     return (
-                        <Link href={'/products/' + item.id}>
+                        <Link key={item.id} href={'/products/' + item.id}>
                             <div className=' flex items-center cursor-pointer hover:bg-gray-400'>
                                 <img src={item.images} className=' w-10' alt="" />
                                 <p key={item.length}>{item.name}</p>
