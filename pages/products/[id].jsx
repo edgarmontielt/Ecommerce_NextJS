@@ -54,7 +54,7 @@ export default function Producto({ product: { product, id } }) {
     return (
         <div className=' md:flex-row flex flex-col gap-10 md:mx-14'>
             <img src={product.images} className=' md:w-1/2 h-1/2 mt-8' />
-            <section className=' md:mt-[5rem] md:text-left text-center md:w-1/2 mx-14 md:mx-0 md:mr-10'>
+            <section className=' header md:mt-[5rem] md:text-left text-center md:w-1/2 mx-14 md:mx-0 md:mr-10'>
                 <h1 className=' text-3xl font-medium mb-10'>{product.name}</h1>
                 <h4 className='font-medium mb-2'>Description:</h4>
                 <p className='mb-12'>{product.description}</p>
