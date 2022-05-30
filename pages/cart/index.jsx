@@ -1,33 +1,23 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, recoverCart, removeItem, removeToCart } from '../../features/cart/index'
 import { ImSpinner3 } from 'react-icons/im';
-import { AiFillShopping, AiOutlineLine } from 'react-icons/ai'
-import { IoIosAdd } from 'react-icons/io';
+import { AiFillShopping } from 'react-icons/ai'
 import Link from 'next/link'
+import RowProduct from '../../components/cart/RowProduct';
+import { recoverCart } from '../../features/cart';
 
 export default function Cart() {
     const data = useSelector(state => state.cart)
+    const { logged } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
     useEffect(() => {
         dispatch(recoverCart())
     }, [])
 
-    const removeProduct = (id) => {
-        dispatch(removeToCart(id))
-    }
-
-    const addAmountProduct = (product) => {
-        dispatch(addItem(product))
-    }
-
-    const removeItemToCart = (product) => {
-        dispatch(removeItem(product))
-    }
     return (
         <>
-            {/* {data.items.length > 0 ? <> */}
+            {logged > 0 ? <>
                 <div className=' flex gap-6 items-center md:ml-40 justify-center md:justify-start'>
                     <AiFillShopping className='w-10 h-10 mt-9' />
                     <h1 className=' font-medium text-4xl mt-10'>Shop Cart</h1>
@@ -43,41 +33,11 @@ export default function Cart() {
                         </tr>
                     </thead>
                     <tbody>
-                        {!data.loading ? data.items.map(item => {
-                            return (
-                                <tr key={item.product.id}>
-                                    <td className=' text-lg text-center '>{item.product.name}</td>
-                                    <td className=' flex justify-center'><img src={item.product.images} className=' w-16' /></td>
-                                    <td >
-                                        <div className=' mx-auto border-2 rounded-md w-40 text-center flex gap-4 justify-center py-1'>
-                                            <span
-                                                className=' flex items-center mt-1'
-                                                onClick={() => removeItemToCart(item)}
-                                            >
-                                                <AiOutlineLine className=' w-6 h-6' />
-                                            </span>
-                                            <p className=' text-lg'>{item.amount}</p>
-                                            <span
-                                                className=' flex items-center'
-                                                onClick={() => addAmountProduct(item)}
-                                            >
-                                                <IoIosAdd className=' w-6 h-6' />
-                                            </span>
-                                        </div>
-                                    </td>
-                                    <td className=' text-center'>
-                                        <button
-                                            onClick={() => removeProduct(item.product.id)}
-                                            className=' bg-black text-white p-2 rounded-lg'>
-                                            Remove
-                                        </button>
-                                    </td>
-                                    <td className=' text-center'>${item.product.default_price_data.unit_amount}</td>
-                                </tr>
-                            )
-                        }) : <div className=' absolute top-1/2 left-1/2'>
-                            <ImSpinner3 className=' w-16 h-16 animate-spin' />
-                        </div>}
+                        {!data.loading ?
+                            data.items.map(item => <RowProduct item={item} />) :
+                            <div className=' absolute top-1/2 left-1/2'>
+                                <ImSpinner3 className=' w-16 h-16 animate-spin' />
+                            </div>}
                     </tbody>
                 </table>
 
@@ -96,11 +56,11 @@ export default function Cart() {
                         </div>
                     </>
                 }
-            {/* </> :
+            </> :
                 <div className=' h-[80vh] flex flex-col justify-center items-center'>
                     <p className=' text-3xl mb-10'>Login, please!!</p>
                     <Link href={'/auth/login'}>Login</Link>
-                </div>} */}
+                </div>}
         </>
     )
 }
