@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { database } from '../../config/firebase';
-import { collection, addDoc, getDocs } from 'firebase/firestore';
-
+import { collection, addDoc, getDocs, getDoc } from 'firebase/firestore';
 
 export const addToCart = createAsyncThunk(
      'cart/addToCart', async (data, thunkAPI) => {
@@ -21,6 +20,27 @@ export const recoverCart = createAsyncThunk(
                products.push({ ...doc.data(), id: doc.id })
           })
           return products
+     }
+)
+
+export const addItemToProduct = createAsyncThunk(
+     'cart/addItem', async (idProduct, thunkAPI) => {
+          try {
+               const state = thunkAPI.getState()
+               console.log(idProduct);
+               console.log(state.auth.id);
+               const col = collection(database, 'cart', state.auth.id, 'items')
+               const snapshot = await getDocs(col)
+               
+               console.log(snapshot);
+               snapshot.forEach(item => {
+                    const product = item.data()
+                    console.log(product)
+                    
+               })
+          } catch (error) {
+               console.log(error);
+          }
      }
 )
 

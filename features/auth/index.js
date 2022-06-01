@@ -48,6 +48,7 @@ const authSlice = createSlice({
             state.logged = true
             state.name = action.payload.displayName
             state.profilePic = action.payload.photoURL
+            state.id = action.payload.id
         },
         logOut(state, action) {
             state.logged = false
@@ -60,14 +61,12 @@ const authSlice = createSlice({
         builder.addCase(logIn.pending, (state, action) => {
             state.loading = true
         })
-
             .addCase(logIn.rejected, (state, action) => {
                 state.logged = false
                 state.name = ''
                 state.id = ''
                 state.loading = false
             })
-
             .addCase(logIn.fulfilled, (state, action) => {
                 state.logged = true
                 state.name = action.payload.displayName
@@ -79,7 +78,6 @@ const authSlice = createSlice({
         builder.addCase(signUp.pending, (state, action) => {
             state.loading = true
         })
-
             .addCase(signUp.rejected, (state, action) => {
                 state.logged = false
                 state.name = ''

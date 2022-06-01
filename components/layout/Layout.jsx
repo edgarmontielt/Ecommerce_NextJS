@@ -15,12 +15,15 @@ export default function Layout({ children }) {
      useEffect(() => {
           onAuthStateChanged(auth, (result) => {
                if (result) {
+                    console.log('entrando');
                     dispatch(validate({
                          email: result.email,
                          displayName: result.displayName,
                          photoURL: result.photoURL,
+                         id: result.uid
                     }))
                } else {
+                    console.log('saliendo');
                     dispatch(logOut())
                }
           })

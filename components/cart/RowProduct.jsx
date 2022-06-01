@@ -1,4 +1,4 @@
-import { addItem, removeItem, removeToCart } from '../../features/cart/index'
+import { addItem, addItemToProduct, removeItem, removeToCart } from '../../features/cart/index'
 import { AiOutlineLine } from 'react-icons/ai'
 import { IoIosAdd } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
@@ -12,7 +12,7 @@ export default function RowProduct({ item }) {
     }
 
     const addAmountProduct = (product) => {
-        dispatch(addItem(product))
+        dispatch(addItemToProduct(product.id))
     }
 
     const removeItemToCart = (product) => {

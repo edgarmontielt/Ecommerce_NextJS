@@ -34,7 +34,7 @@ export default function Cart() {
                     </thead>
                     <tbody>
                         {!data.loading ?
-                            data.items.map(item => <RowProduct item={item} />) :
+                            data.items.map(item => <RowProduct key={item.id} item={item} />) :
                             <div className=' absolute top-1/2 left-1/2'>
                                 <ImSpinner3 className=' w-16 h-16 animate-spin' />
                             </div>}
